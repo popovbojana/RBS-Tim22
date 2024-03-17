@@ -16,7 +16,7 @@ Zahtevi za bezbednu implementaciju heš algoritma:
 - Work factor ukoliko nije definisan po defaultu, odabrati vrednost tako da se ostvari dobar balans između sigurnosti i brzine izvršavanja
 - Ukoliko se koristi Spring Boot framework, koristiti verziju 6.2.2 za Spring Security Crypto modul jer nema pronađenih ranjivosti
 
-1. Mehanizam revizije (auditing)
+2. Mehanizam revizije (auditing)
 
 Jedan od mehanizama za logovanje događaja unutar Spring Boot framework-a jeste Log4j2. Ovaj mehanizam podržava neke od traženih zahteva, a neke je potrebno dodatno konfigurisati.
 
@@ -27,6 +27,6 @@ Jedan od mehanizama za logovanje događaja unutar Spring Boot framework-a jeste 
 - Log4j2 obezbeđuje precizne vremenske oznake za svaki logovani događaj, a u xml datoteci možemo specificirati pattern layout za ispis vremenske oznake.
 - Urednost logova je obezbeđena pravilnom upotrebom prethodno navedenih konfiguracija.
 
-1. Dodatne bezbednosne kontrole
+3. Dodatne bezbednosne kontrole
 
 U prethodnom projektu iz predmeta Informaciona bezbednost smo koristili bezbednosnu kontrolu za hešovanje lozinki pomoću bcrypt algoritma, poštovajući sve navedene zahteve, osim trenutne verzije. Tad je bila aktuelna neka od verzija 6.1.x za koje smo uvrdili da imaju ranjivost CVE-2024-22234.
