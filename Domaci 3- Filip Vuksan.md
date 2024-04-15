@@ -4,6 +4,7 @@ Kratak postupak: U "About us" stranici sam kliknuo na linkovani teksts "Check ou
 
 Klasa napada - "Broken Access Control" (Slomljena kontrola pristupa): Ova klasa napada obuhvata situacije u kojima softver ne sprovodi efikasnu kontrolu pristupa, omogućavajući korisnicima da pristupe resursima ili izvrše akcije koje nisu namenjene njima.
 Uticaj iskorištenja ranjivosti: Iskorištenje ove ranjivosti može imati ozbiljne posledice, uključujući:
+
     • Neovlašćeni pristup osetljivim informacijama ili funkcijama sistema.
     • Modifikaciju ili brisanje podataka koji nisu namenjeni korisniku.
     • Povećanje privilegija korisnika, omogućavajući im da izvrše akcije koje nisu deo njihovih ovlašćenja.
