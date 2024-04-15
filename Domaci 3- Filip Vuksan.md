@@ -86,6 +86,7 @@ Kratak postupak: Istrazio sam i video da chatbot da manipulacijom unosa tj admin
 
 Klasa napada - "Vulnerable Components" (Ranjive komponente): Ova klasa napada obuhvata situacije kada aplikacija koristi ranjive ili nesigurne komponente, što omogućava napadaču da izazove neželjene efekte ili izvrši zlonamerne akcije.
 Uticaj iskorištenja ranjivosti: Iskorištenje ove ranjivosti može imati ozbiljne posledice, uključujući:
+
     • Mogućnost izvršavanja zlonamernog koda ili komandi na serveru.
     • Ometanje normalnog rada aplikacije ili čak kompromitovanje celokupnog sistema.
     • Neovlašćen pristup ili manipulacija podacima korisnika ili sistema.
