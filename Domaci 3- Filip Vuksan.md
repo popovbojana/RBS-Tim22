@@ -45,6 +45,7 @@ Kratak postupak: Poslao sam post upit na http://localhost:3000/api/Users, ovo je
 Klasa napada - "XSS" (Cross-Site Scripting): Ova klasa napada obuhvata situacije kada napadač ubacuje zlonameran JavaScript kod u web stranicu ili aplikaciju, koji se potom izvršava u browser-u korisnika.
 Uticaj iskorištenja ranjivosti: Iskorištenje ove ranjivosti može imati ozbiljne posledice, uključujući:
 
+
     • Krađu sesija korisnika.
     • Skidanje ili manipulacija sadržaja stranice.
     • Preusmeravanje korisnika na zlonamerni sajt.
