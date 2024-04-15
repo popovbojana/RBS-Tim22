@@ -3,7 +3,7 @@ Obavezan zadatak: Eastet egg
 Kratak postupak: U "About us" stranici sam kliknuo na linkovani teksts "Check out our boring boring terms of use if you are interested in such lame stuff". Nakon toga umesto http://localhost:3000/ftp/legal.md sam promenio u http://localhost:3000/ftp , pokusao sam da skinem "eastere.gg", medjutim nije dozvoljeno s obzirom da ne ispunjava format fajla koji sme da se skine, ali promenuom u http://localhost:3000/easter.gg%2500.md fajl se moze skinuti gde se nalazi string koji treba da se dekodira pomocu Base64 dekodera, a nakon toga dekodirati pomocu ROT-13 dekodera, cime se dobija string koji dodajemo na http://localhost:3000 koji nas vodi na stranicu eastegga (planeta neka).
 
 Klasa napada - "Broken Access Control" (Slomljena kontrola pristupa): Ova klasa napada obuhvata situacije u kojima softver ne sprovodi efikasnu kontrolu pristupa, omogućavajući korisnicima da pristupe resursima ili izvrše akcije koje nisu namenjene njima.
-Uticaj iskorištenja ranjivosti: Iskorištenje ove ranjivosti može imati ozbiljne posledice, uključujući:
+Uticaj iskorištenja ranjivosti: Iskorištenje ove ranjivosti može imati ozbiljne posledice, uključujući
 
     • Neovlašćeni pristup osetljivim informacijama ili funkcijama sistema.
     • Modifikaciju ili brisanje podataka koji nisu namenjeni korisniku.
