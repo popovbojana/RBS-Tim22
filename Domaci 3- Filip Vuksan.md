@@ -64,6 +64,7 @@ Zadatak 4:  NoSQL Dos
 
 Kratak postupak: Znaci kad sam kreirao review za proizvod, nasao sam u inspektu da ga je ubacio u http://localhost:3000/rest/products/1/reviews. Medjutim kad sam promenio u http://localhost:3000/rest/products/sleep(2000)/reviews. Server sam pauzirao tj stavio u "sleep" mode.
 Klasa napada - "Injection" (Injekcija): Ovaj tip napada obuhvata situacije kada napadač ubacuje zlonamerni kod ili komande u aplikaciju ili sistem putem nevalidnih ili nebezbednih korisničkih unosa.
+
 Uticaj iskorištenja ranjivosti: Iskorištenjem ove ranjivosti, napadač može izazvati različite štetne efekte, uključujući:
 
     • Prekid normalnog rada sistema ili usluge.
@@ -72,6 +73,7 @@ Uticaj iskorištenja ranjivosti: Iskorištenjem ove ranjivosti, napadač može i
     • Povećanje privilegija ili izazivanje neželjenih promena u aplikaciji ili sistemu.
     
 Ranjivosti u softveru koje su dozvolile napad: Ove ranjivosti mogu biti rezultat nedostatka adekvatne provere korisničkog unosa ili neispravne obrade unosa od strane softvera. U ovom slučaju, aplikacija nije adekvatno validirala ili sanitizovala korisnički unos, omogućavajući napadaču da ubaci zlonamerni kod poput sleep(2000) direktno u URL.
+
 Primerene kontramere:
 
     • Input Validation: Softver bi trebao pažljivo validirati sve korisničke unose kako bi se osiguralo da ne sadrže zlonamerni kod ili nebezbedne karaktere.
@@ -85,6 +87,7 @@ Zadatak 5: Vurnalable Components
 Kratak postupak: Istrazio sam i video da chatbot da manipulacijom unosa tj admin"); process=null; users.addUser("1337", "test moze doci do greske tj gasenja chatbota.
 
 Klasa napada - "Vulnerable Components" (Ranjive komponente): Ova klasa napada obuhvata situacije kada aplikacija koristi ranjive ili nesigurne komponente, što omogućava napadaču da izazove neželjene efekte ili izvrši zlonamerne akcije.
+
 Uticaj iskorištenja ranjivosti: Iskorištenje ove ranjivosti može imati ozbiljne posledice, uključujući:
 
     • Mogućnost izvršavanja zlonamernog koda ili komandi na serveru.
