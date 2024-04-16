@@ -21,7 +21,7 @@ Primerene kontramere:
 
 Zadatak 2: Admin Registration
 
-Kratak postupak: Kada zelim da se login-ujem unosom" ' or 1=1--" i bilo koje sifre se mogu ulogovati kao admin, zato sto je on prvi kreirani korisnik.
+Kratak postupak: Kada zelim da se login-ujem unosom" ' or 1=1--" i bilo koje sifre se mogu ulogovati kao admin, zato sto je on prvi kreirani korisnik. Injection
 
 Klasa napada - "Improper Input Validation" (Nedovoljna validacija unosa): Ova klasa napada se odnosi na situacije kada softver ne sprovodi dovoljno strogu validaciju korisničkih unosa, što omogućava napadačima da ubace zlonamerni ili neadekvatan unos kako bi izazvali neželjene efekte.
 
