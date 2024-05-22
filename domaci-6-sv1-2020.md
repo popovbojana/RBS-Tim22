@@ -3,6 +3,7 @@ Odrađeni zadaci:
   9. Maps OSINT 1
 
 Opis pronalaska resenja:
+
   5. Educational Purposes Only:
     - Umesto traženja odgovora na zadata pitanja, odradio sam brut force na MD5 enkodovanim podacima
     - Spojio sam odgovore kako bih dobio sifru: 18/05/1960Dragutin18/05/20051999
