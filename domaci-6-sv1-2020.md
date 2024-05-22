@@ -1,7 +1,6 @@
 Odrađeni zadaci:
 
   5. Educational Purposes Only
-
   9. Maps OSINT 1
 
 Opis pronalaska resenja:
