@@ -9,14 +9,14 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("/namespace")
+@RequestMapping("/api/namespace")
 public class NamespaceController {
     @Autowired
     private ConsulDBImpl consulDB;
     @Autowired
     private ObjectMapper mapper;
 
-    @PostMapping(value = "/namespace/{namespace}", consumes = "application/json")
+    @PostMapping(value = "/{namespace}", consumes = "application/json")
     public ResponseEntity<?> setConfig(@PathVariable String namespace,
                                        @RequestBody NamespaceConfig config){
         try{
@@ -28,7 +28,7 @@ public class NamespaceController {
         }
     }
 
-    @GetMapping("/namespace/{namespace}")
+    @GetMapping("/{namespace}")
     public ResponseEntity<?> getConfig(@PathVariable String namespace) {
        String config = consulDB.getKV(namespace);
        return  ResponseEntity.ok(config);

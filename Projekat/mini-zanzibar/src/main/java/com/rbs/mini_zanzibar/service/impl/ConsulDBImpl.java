@@ -10,19 +10,21 @@ import org.springframework.stereotype.Service;
 public class ConsulDBImpl implements ConsulDBService {
 
     private final ConsulClient client;
-
+    private final String version;
     public ConsulDBImpl(@Value("${spring.cloud.consul.host}") String host,
-                        @Value("${spring.cloud.consul.port}") int port) {
+                        @Value("${spring.cloud.consul.port}") int port,
+                        @Value("${consul.version}") String version) {
         this.client = new ConsulClient(host, port);
+        this.version = version;
     }
     @Override
     public boolean setKV(String key, String value) {
-        return client.setKVValue(key, value).getValue();
+        return client.setKVValue(key + "v" + version, value).getValue();
     }
 
     @Override
     public String getKV(String key) {
-        GetValue value = client.getKVValue(key).getValue();
+        GetValue value = client.getKVValue(key + "v" + version).getValue();
         return value != null ? value.getDecodedValue() : null;
     }
 }
