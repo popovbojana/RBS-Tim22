@@ -2,6 +2,7 @@ package com.rbs.mini_zanzibar.service.impl;
 
 import com.ecwid.consul.v1.ConsulClient;
 import com.ecwid.consul.v1.kv.model.GetValue;
+import com.rbs.mini_zanzibar.exception.NotFoundException;
 import com.rbs.mini_zanzibar.service.ConsulDBService;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
@@ -25,6 +26,10 @@ public class ConsulDBImpl implements ConsulDBService {
     @Override
     public String getKV(String key) {
         GetValue value = client.getKVValue(key + "v" + version).getValue();
-        return value != null ? value.getDecodedValue() : null;
+        if(value != null){
+            return value.getDecodedValue();
+        }else {
+            throw new NotFoundException(String.format("No namespace found with key: %s", key));
+        }
     }
 }
