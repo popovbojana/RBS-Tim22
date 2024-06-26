@@ -46,27 +46,21 @@ public class BlogService {
      }
      return false;
     }
-
+    //TODO: nisu bitne toliko za rad zanzibara
     public BlogDTO getBlog(int id) {
-        if (id > 0 && id <= blogs.size()) {
-            return blogs.get(id - 1);
-        }
         return null;
     }
 
     public void deleteBlog(int id) {
-        if (id > 0 && id <= blogs.size()) {
-            blogs.remove(id - 1);
-        }
     }
 
-    private boolean sendAcl(String user, String role, String blog) {
+    private boolean sendAcl(String object, String relation, String user) {
         try {
-            AclDTO acl = new AclDTO(user, role, blog);
+            AclDTO acl = new AclDTO(user, relation, object);
             String jsonPayload = objectMapper.writeValueAsString(acl);
             webClientBuilder.build()
                     .post()
-                    .uri("http://localhost:8081/api/") //TODO: write correct address!
+                    .uri("http://localhost:8080/api/auth/acl")
                     .header(HttpHeaders.CONTENT_TYPE, MediaType.APPLICATION_JSON_VALUE)
                     .body(Mono.just(jsonPayload), String.class)
                     .retrieve()
@@ -79,11 +73,11 @@ public class BlogService {
         }
     }
 
-    private boolean check(String user, String role, String blog) {
-        String uri = user + "-" + role + "-" + blog;
+    private boolean check(String user, String relation, String object) {
+        String uri = String.format("?object=%s:doc&relation=%s&user=%s", object, relation, user);
         ResponseDTO response = webClientBuilder.build()
                 .get()
-                .uri("http://localhost:8081/api/auth/" + uri)
+                .uri("http://localhost:8080/api/auth/acl/check" + uri)
                 .header(HttpHeaders.CONTENT_TYPE, "application/json")
                 .retrieve()
                 .bodyToMono(ResponseDTO.class).block();
