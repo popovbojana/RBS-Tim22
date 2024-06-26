@@ -11,7 +11,6 @@ public class AclDTO {
         this.document = document;
     }
 
-    // Getters and Setters
     public String getUser() {
         return user;
     }

@@ -4,6 +4,7 @@ import com.rbs.blog.models.AclDTO;
 import com.rbs.blog.models.BlogDTO;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.rbs.blog.models.ResponseDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
@@ -27,15 +28,23 @@ public class BlogService {
         this.objectMapper = objectMapper;
     }
 
-    public void createBlog(BlogDTO blog, String user) {
+    public boolean createBlog(BlogDTO blog) {
         blogs.add(blog);
-        sendAcl(user, "owner", "blog:" + blogs.size());
+        return sendAcl(blog.getUser(), "owner", "doc:" +blog.getTitle());
     }
 
-    public void updateBlog(int id, BlogDTO blog) {
-        if (id > 0 && id <= blogs.size()) {
-            blogs.set(id - 1, blog);
-        }
+    public boolean updateBlog(BlogDTO blog) {
+
+     for(BlogDTO b : blogs) {
+         if (b.getTitle().equals(blog.getTitle()) && b.getUser().equals(blog.getUser())) {
+             boolean response = check(blog.getUser(), "editor", "doc:" + blog.getTitle());
+             if(response){
+                 b.setText(blog.getText());
+                 return true;
+             }
+         }
+     }
+     return false;
     }
 
     public BlogDTO getBlog(int id) {
@@ -51,21 +60,33 @@ public class BlogService {
         }
     }
 
-    private void sendAcl(String user, String role, String document) {
+    private boolean sendAcl(String user, String role, String blog) {
         try {
-            AclDTO acl = new AclDTO(user, role, document);
+            AclDTO acl = new AclDTO(user, role, blog);
             String jsonPayload = objectMapper.writeValueAsString(acl);
             webClientBuilder.build()
                     .post()
-                    .uri("http://localhost:8081/api/auth")
+                    .uri("http://localhost:8081/api/") //TODO: write correct address!
                     .header(HttpHeaders.CONTENT_TYPE, MediaType.APPLICATION_JSON_VALUE)
                     .body(Mono.just(jsonPayload), String.class)
                     .retrieve()
                     .bodyToMono(String.class)
                     .subscribe();
+            return true;
         } catch (JsonProcessingException e) {
             e.printStackTrace();
-            throw new RuntimeException();
+            return false;
         }
+    }
+
+    private boolean check(String user, String role, String blog) {
+        String uri = user + "-" + role + "-" + blog;
+        ResponseDTO response = webClientBuilder.build()
+                .get()
+                .uri("http://localhost:8081/api/auth/" + uri)
+                .header(HttpHeaders.CONTENT_TYPE, "application/json")
+                .retrieve()
+                .bodyToMono(ResponseDTO.class).block();
+        return Boolean.parseBoolean(response.getAuthorized());
     }
 }

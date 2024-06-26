@@ -3,6 +3,8 @@ package com.rbs.blog.controllers;
 import com.rbs.blog.models.BlogDTO;
 import com.rbs.blog.services.BlogService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -17,13 +19,21 @@ public class BlogController {
     }
 
     @PostMapping
-    public void createBlog(@RequestBody BlogDTO blog, @RequestHeader("user") String user) {
-        blogService.createBlog(blog, user);
+    public ResponseEntity<?> createBlog(@RequestBody BlogDTO blog) {
+        if (blogService.createBlog(blog)){
+            return new ResponseEntity<>("Successfully created a new blog.", HttpStatus.OK);
+        }else{
+            return new ResponseEntity<>("Error chile creating new blog.", HttpStatus.BAD_REQUEST);
+        }
     }
 
-    @PutMapping("/{id}")
-    public void updateBlog(@PathVariable int id, @RequestBody BlogDTO blog) {
-        blogService.updateBlog(id, blog);
+    @PutMapping
+    public ResponseEntity<?> updateBlog(@RequestBody BlogDTO blog) {
+        if (blogService.updateBlog(blog)){
+            return new ResponseEntity<>("Successfully updated the blog.", HttpStatus.OK);
+        }else{
+            return new ResponseEntity<>("Error chile updating the blog.", HttpStatus.BAD_REQUEST);
+        }
     }
 
     @GetMapping("/{id}")
