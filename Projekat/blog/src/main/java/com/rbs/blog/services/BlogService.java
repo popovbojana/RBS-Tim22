@@ -30,14 +30,14 @@ public class BlogService {
 
     public boolean createBlog(BlogDTO blog) {
         blogs.add(blog);
-        return sendAcl(blog.getUser(), "owner", "doc:" +blog.getTitle());
+        return sendAcl(blog.getTitle(),"owner", blog.getUser());
     }
 
     public boolean updateBlog(BlogDTO blog) {
 
      for(BlogDTO b : blogs) {
          if (b.getTitle().equals(blog.getTitle()) && b.getUser().equals(blog.getUser())) {
-             boolean response = check(blog.getUser(), "editor", "doc:" + blog.getTitle());
+             boolean response = check(blog.getTitle(),"editor", blog.getUser() ).isAuthorized();
              if(response){
                  b.setText(blog.getText());
                  return true;
@@ -56,7 +56,7 @@ public class BlogService {
 
     private boolean sendAcl(String object, String relation, String user) {
         try {
-            AclDTO acl = new AclDTO(user, relation, object);
+            AclDTO acl = new AclDTO(object, relation, user);
             String jsonPayload = objectMapper.writeValueAsString(acl);
             webClientBuilder.build()
                     .post()
@@ -73,14 +73,15 @@ public class BlogService {
         }
     }
 
-    private boolean check(String user, String relation, String object) {
-        String uri = String.format("?object=%s:doc&relation=%s&user=%s", object, relation, user);
-        ResponseDTO response = webClientBuilder.build()
+    private ResponseDTO check(String object, String relation, String user) {
+        String uri = String.format("?object=%s&relation=%s&user=%s", object, relation, user);
+        System.out.println(uri);
+        return webClientBuilder.build()
                 .get()
                 .uri("http://localhost:8080/api/auth/acl/check" + uri)
                 .header(HttpHeaders.CONTENT_TYPE, "application/json")
                 .retrieve()
                 .bodyToMono(ResponseDTO.class).block();
-        return Boolean.parseBoolean(response.getAuthorized());
+
     }
 }

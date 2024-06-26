@@ -5,10 +5,10 @@ public class AclDTO {
     private String relation;
     private String user;
 
-    public AclDTO(String user, String role, String document) {
-        this.object = user;
-        this.relation = role;
-        this.user = document;
+    public AclDTO(String object, String relation, String user) {
+        this.object = object;
+        this.relation = relation;
+        this.user = user;
     }
 
     public String getObject() {

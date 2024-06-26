@@ -1,17 +1,18 @@
 package com.rbs.blog.models;
 
 public class ResponseDTO {
-    private String authorized;
-
-    public ResponseDTO(String authorized) {
+    private boolean authorized;
+    public ResponseDTO() {
+    }
+    public ResponseDTO(boolean authorized) {
         this.authorized = authorized;
     }
 
-    public String getAuthorized() {
+    public boolean isAuthorized() {
         return authorized;
     }
 
-    public void setAuthorized(String authorized) {
+    public void setAuthorized(boolean authorized) {
         this.authorized = authorized;
     }
 }
