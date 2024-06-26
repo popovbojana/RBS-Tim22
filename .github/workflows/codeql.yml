@@ -47,6 +47,7 @@ jobs:
       if: matrix.language == 'java-kotlin'
       run: |
         cd Projekat/mini-zanzibar
+        chmod +x ./mvnw
         ./mvnw clean install
 
     - name: Perform CodeQL Analysis
