@@ -30,14 +30,14 @@ public class BlogService {
 
     public boolean createBlog(BlogDTO blog) {
         blogs.add(blog);
-        return sendAcl(blog.getTitle(),"owner", blog.getUser());
+        return sendAcl(blog.getTitle()+":doc","owner", blog.getUser());
     }
 
     public boolean updateBlog(BlogDTO blog) {
 
      for(BlogDTO b : blogs) {
          if (b.getTitle().equals(blog.getTitle()) && b.getUser().equals(blog.getUser())) {
-             boolean response = check(blog.getTitle(),"editor", blog.getUser() ).isAuthorized();
+             boolean response = check(blog.getTitle()+":doc","editor", blog.getUser() ).isAuthorized();
              if(response){
                  b.setText(blog.getText());
                  return true;
