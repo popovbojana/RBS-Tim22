@@ -31,6 +31,7 @@ public class BlogService {
     public boolean createBlog(BlogDTO blog) {
         blogs.add(blog);
         return sendAcl(blog.getTitle()+":doc","owner", blog.getUser());
+
     }
 
     public boolean updateBlog(BlogDTO blog) {
