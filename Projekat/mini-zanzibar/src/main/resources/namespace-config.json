@@ -1,7 +1,0 @@
-{
-  "relations": {
-    "owner": ["editor"],
-    "editor": ["viewer"],
-    "viewer": []
-  }
-}
